@@ -82,7 +82,7 @@ export default function Produk() {
                   <p className="font-display text-[2.4rem] leading-none">
                     {tray.nama}: {tray.isi}
                   </p>
-                  <p className="mt-2 max-w-md text-tinta-2">{tray.teks} Satu tray berisi satu ukuran saja.</p>
+                  <p className="mt-2 max-w-md text-tinta-2">{tray.teks}</p>
                 </div>
               </div>
               <div className="lubang lubang-foto flex flex-col md:col-span-5">

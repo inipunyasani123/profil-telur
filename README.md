@@ -16,7 +16,7 @@ Lima halaman isi paket:
 - **Profil** (`/profil`): jalur telur dari kandang sampai tray, tiga hal yang dipegang, dan cara pesan.
 - **Produk** (`/produk`): empat ukuran (kecil, sedang, besar, jumbo) dengan penggaris berat per butir dan perkiraan berat satu tray, kemasan tray 30 butir dan peti 6 tray, telur retak untuk usaha kue, dan cara kirim.
 - **Kabar** (`/kabar`, `/kabar/<slug>`): tiga tulisan contoh: cara menyimpan telur di warung, arti ukuran telur di daftar harga (dengan tabel contoh hitungan), dan menghitung kebutuhan telur katering.
-- **Kontak** (`/kontak`): formulir yang menyusun pesan WhatsApp (nama, jenis usaha, jumlah per ukuran dalam tray atau peti, tujuan, cara terima, hari kirim, catatan) dengan pratinjau pesan, pemeriksaan pesanan minimum per area, tombol salin pesan, serta alamat gudang contoh, jam kerja, dan area kirim.
+- **Kontak** (`/kontak`): formulir yang menyusun pesan WhatsApp (nama, jenis usaha, jumlah per ukuran dalam tray atau peti, cara terima, tujuan bila diantar, hari kirim, catatan) dengan pratinjau pesan, pemeriksaan pesanan minimum per area (ambil sendiri di gudang cukup 1 tray), tombol salin pesan, serta alamat gudang contoh, jam kerja, dan area kirim.
 
 Halaman tambahan:
 

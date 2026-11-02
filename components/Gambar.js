@@ -139,20 +139,20 @@ export function Truk({ className = '' }) {
 export function Peta({ className = '' }) {
   return (
     <svg
-      viewBox="0 0 360 250"
+      viewBox="0 0 360 264"
       className={className}
       role="img"
       aria-label="Ilustrasi arah kirim dari gudang di Blitar: Kediri ke arah utara dan Tulungagung ke arah barat"
     >
       <defs>
         <clipPath id="bingkai-peta">
-          <rect width="360" height="250" rx="18" />
+          <rect width="360" height="264" rx="18" />
         </clipPath>
       </defs>
       <g clipPath="url(#bingkai-peta)">
-        <rect width="360" height="250" fill="#f3e4bd" />
-        <path d="M-4 170C40 130 90 150 130 120S210 60 250 80s90 30 114 -10V254H-4Z" fill="#e6d2a1" />
-        <path d="M-4 220C60 200 120 226 190 206s120 -4 174 -24V254H-4Z" fill="#d9c18a" />
+        <rect width="360" height="264" fill="#f3e4bd" />
+        <path d="M-4 170C40 130 90 150 130 120S210 60 250 80s90 30 114 -10V268H-4Z" fill="#e6d2a1" />
+        <path d="M-4 220C60 200 120 226 190 206s120 -4 174 -24V268H-4Z" fill="#d9c18a" />
       </g>
       <path d="M200 182 160 64" stroke={TINTA} strokeWidth="3" strokeLinecap="round" strokeDasharray="1 9" />
       <path d="M200 182 70 140" stroke={TINTA} strokeWidth="3" strokeLinecap="round" strokeDasharray="1 9" />
@@ -162,18 +162,18 @@ export function Peta({ className = '' }) {
       <g transform="translate(200 186) scale(.16) translate(-50 -64)">
         <path d={TELUR} fill="#fff8e7" stroke={TINTA} strokeWidth="11" strokeLinejoin="round" />
       </g>
-      <g fill={TINTA} style={fontSans} fontSize="15" fontWeight="800">
-        <text x="176" y="50">Kediri</text>
-        <text x="62" y="166" textAnchor="middle">Tulungagung</text>
-        <text x="200" y="222" textAnchor="middle">Gudang di Blitar</text>
+      <g fill={TINTA} style={fontSans} fontSize="17" fontWeight="800">
+        <text x="176" y="52">Kediri</text>
+        <text x="64" y="168" textAnchor="middle">Tulungagung</text>
+        <text x="200" y="224" textAnchor="middle">Gudang di Blitar</text>
       </g>
       <g transform="translate(322 34)" stroke={TINTA} strokeWidth="2.5" fill="none" strokeLinecap="round" strokeLinejoin="round">
         <path d="M0 18V-6M-7 2 0 -7l7 9" />
-        <text x="0" y="38" textAnchor="middle" stroke="none" fill={TINTA} fontSize="15" fontWeight="800" style={fontSans}>
+        <text x="0" y="40" textAnchor="middle" stroke="none" fill={TINTA} fontSize="17" fontWeight="800" style={fontSans}>
           Utara
         </text>
       </g>
-      <text x="14" y="240" fill="#4b3520" fontSize="14" style={fontSans}>
+      <text x="14" y="253" fill="#4b3520" fontSize="16" style={fontSans}>
         Ilustrasi arah, tidak berskala
       </text>
     </svg>
@@ -238,7 +238,7 @@ export function Penggaris({ className = '' }) {
       {seg.map((s) => (
         <g key={s.nama}>
           <rect x={x(s.a)} y="146" width={x(s.b) - x(s.a)} height="38" fill={s.warna} stroke={TINTA} strokeWidth="2.5" />
-          <text x={(x(s.a) + x(s.b)) / 2} y="171" textAnchor="middle" fontSize="16" fontWeight="800" fill={TINTA} style={fontSans}>
+          <text x={(x(s.a) + x(s.b)) / 2} y="172" textAnchor="middle" fontSize="18" fontWeight="800" fill={TINTA} style={fontSans}>
             {s.nama}
           </text>
         </g>
@@ -246,12 +246,12 @@ export function Penggaris({ className = '' }) {
       {[45, 50, 55, 60, 65, 70].map((g) => (
         <g key={g}>
           <path d={`M${x(g)} 184v9`} stroke={TINTA} strokeWidth="2.5" />
-          <text x={x(g)} y="213" textAnchor="middle" fontSize="15" fontWeight="700" fill={TINTA} style={fontMono}>
+          <text x={x(g)} y="214" textAnchor="middle" fontSize="18" fontWeight="700" fill={TINTA} style={fontMono}>
             {g}
           </text>
         </g>
       ))}
-      <text x="200" y="236" textAnchor="middle" fontSize="15" fill="#4b3520" style={fontMono}>
+      <text x="200" y="237" textAnchor="middle" fontSize="17" fill="#4b3520" style={fontMono}>
         gram per butir
       </text>
     </svg>

@@ -6,7 +6,7 @@ import JsonLd from '@/components/JsonLd';
 import { site } from '@/lib/data';
 import { jsonLdUsaha, OG_ALT } from '@/lib/seo';
 
-const passion = Passion_One({ weight: ['400', '900'], subsets: ['latin'], variable: '--font-passion', display: 'swap' });
+const passion = Passion_One({ weight: '400', subsets: ['latin'], variable: '--font-passion', display: 'swap' });
 const karla = Karla({ subsets: ['latin'], variable: '--font-karla', display: 'swap' });
 const spline = Spline_Sans_Mono({ subsets: ['latin'], variable: '--font-spline', display: 'swap' });
 

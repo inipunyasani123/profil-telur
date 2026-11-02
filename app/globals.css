@@ -132,6 +132,7 @@
     font-size: 0.8125rem;
     line-height: 1.35;
     letter-spacing: 0.01em;
+    text-wrap: balance;
   }
   .data {
     font-family: var(--font-mono);
@@ -409,6 +410,59 @@
     font-family: var(--font-mono);
     font-variant-numeric: tabular-nums;
     white-space: nowrap;
+  }
+
+  /* Layar sempit: tiap baris tabel menjadi blok bertumpuk (label di kiri, nilai di kanan), jadi tidak perlu digeser ke samping. */
+  @media (max-width: 39.99rem) {
+    .tabel-nota thead {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+    }
+    .tabel-nota,
+    .tabel-nota tbody,
+    .tabel-nota tr,
+    .tabel-nota tbody th,
+    .tabel-nota td {
+      display: block;
+    }
+    .tabel-nota tr {
+      padding: 0.7rem 0 0.8rem;
+      border-bottom: 1.5px dashed rgba(42, 25, 11, 0.35);
+    }
+    .tabel-nota tbody th {
+      padding: 0 0.2rem 0.35rem;
+      border: 0;
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      font-weight: 400;
+      line-height: 1.05;
+      white-space: normal;
+    }
+    .tabel-nota td,
+    .tabel-nota td.angka-kolom {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 0.2rem 0.2rem;
+      border: 0;
+      font-size: 0.9375rem;
+      white-space: normal;
+    }
+    .tabel-nota td::before {
+      content: attr(data-label);
+      flex-shrink: 0;
+      font-family: var(--font-mono);
+      font-size: 0.8125rem;
+      font-weight: 700;
+      text-align: left;
+      color: var(--color-tinta-2);
+    }
   }
 
   /* Telur turun ke lubangnya saat halaman dibuka (dimatikan oleh prefers-reduced-motion). */

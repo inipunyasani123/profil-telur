@@ -74,7 +74,7 @@ export default function Beranda() {
               <p className="label text-kuning-muda">Batas pesan untuk kirim besok</p>
               <p className="angka text-[clamp(4.5rem,11vw,6.6rem)] text-kuning">{jam.batasPesan}</p>
               <p className="text-cangkang/90">
-                Diantar {jam.antar} WIB, {jam.hari.replace('–', ' sampai ')}. Pesan setelah jam ini, telur datang lusa.
+                Di Blitar, telur diantar {jam.antar} WIB, {jam.hari.replace('–', ' sampai ')}. Pesan setelah jam ini, telur datang lusa.
               </p>
             </div>
           </div>
@@ -143,7 +143,7 @@ export default function Beranda() {
               Pesan sore ini, telur datang besok pagi.
             </h2>
             <p className="mt-5 max-w-sm text-cangkang/90">
-              Gudang buka {jam.buka}–{jam.tutup} WIB, {jam.hari.replace('–', ' sampai ')}. Tidak ada pengiriman hari Minggu, jadi pesanan Sabtu sore datang hari Senin.
+              Gudang buka {jam.buka}–{jam.tutup} WIB, {jam.hari.replace('–', ' sampai ')}. Tidak ada pengiriman hari Minggu, jadi pesanan hari Sabtu datang hari Senin.
             </p>
           </div>
           <div className="lg:col-span-8">

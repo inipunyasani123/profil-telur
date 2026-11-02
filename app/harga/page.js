@@ -104,9 +104,9 @@ export default function HalamanHarga() {
                 <span className="data pb-2 text-cangkang/90">WIB</span>
               </p>
               <ul className="space-y-2 text-cangkang/95">
-                <li>Pesan sebelum jam ini, telur diantar besok pagi pukul {jam.antar}.</li>
+                <li>Pesan sebelum jam ini, telur ke Blitar diantar besok pagi pukul {jam.antar}.</li>
                 <li>Pesan setelah jam ini, telur datang lusa.</li>
-                <li>Tidak ada kirim hari Minggu: pesanan Sabtu sore datang hari Senin.</li>
+                <li>Tidak ada kirim hari Minggu: pesanan hari Sabtu datang hari Senin.</li>
               </ul>
             </article>
 

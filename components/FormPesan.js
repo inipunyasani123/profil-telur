@@ -44,6 +44,8 @@ export default function FormPesan() {
 
   const tray = BARIS.reduce((a, u) => a + (jumlah[u.id] || 0) * (satuan(u.id) === 'peti' ? TRAY_PER_PETI : 1), 0);
   const tuju = tujuan.find((t) => t.id === tujuanId);
+  // Ambil sendiri di gudang: tanpa tujuan kirim, minimal 1 tray (sama dengan halaman Harga).
+  const ambil = terima === caraTerima[1];
 
   const pesan = (() => {
     const dipilih = BARIS.filter((u) => (jumlah[u.id] || 0) > 0);
@@ -57,9 +59,9 @@ export default function FormPesan() {
       baris.push(`- ${u.nama}: ${jumlah[u.id]} ${s}${s === 'peti' ? ` (${jumlah[u.id] * TRAY_PER_PETI} tray)` : ''}`);
     });
     baris.push(`Total: ${tray} tray (${tray * ISI_TRAY} butir)`);
-    baris.push(`Tujuan: ${tuju.nama}`);
     baris.push(`Cara terima: ${terima}`);
-    baris.push(`Kirim: ${KIRIM.find((k) => k.id === kirim).teks}`);
+    if (!ambil) baris.push(`Tujuan: ${tuju.nama}`);
+    baris.push(`Kapan: ${KIRIM.find((k) => k.id === kirim).teks}`);
     if (catatan.trim()) baris.push(`Catatan: ${catatan.trim()}`);
     return baris.join('\n');
   })();
@@ -68,7 +70,7 @@ export default function FormPesan() {
     const g = [];
     if (!nama.trim()) g.push('Tulis namamu atau nama usahamu.');
     if (tray < 1) g.push('Isi jumlah pesanan dulu, minimal 1 tray.');
-    else if (tray < tuju.minimum) g.push(`Untuk ${tuju.nama}, pesanan minimal ${tuju.minimum} tray. Pesananmu baru ${tray} tray.`);
+    else if (!ambil && tray < tuju.minimum) g.push(`Untuk ${tuju.nama}, pesanan minimal ${tuju.minimum} tray. Pesananmu baru ${tray} tray.`);
     setGalat(g);
     return g.length === 0;
   }
@@ -165,19 +167,6 @@ export default function FormPesan() {
 
         <fieldset className="min-w-0 space-y-4">
           <legend className="mb-1 font-display text-[2rem] leading-none">Pengiriman</legend>
-          <div role="radiogroup" aria-label="Tujuan">
-            <p className="mb-1.5 font-bold">Tujuan</p>
-            <div className="grid gap-2 sm:grid-cols-3">
-              {tujuan.map((t) => (
-                <Pilihan key={t.id} nama="tujuan" nilai={t.id} dipilih={tujuanId === t.id} ubah={setTujuanId}>
-                  {t.nama}
-                </Pilihan>
-              ))}
-            </div>
-            <p className="data mt-2 text-tinta-2">
-              Kirim ke sini: {tuju.hari}. Minimal {tuju.minimum} tray.
-            </p>
-          </div>
           <div role="radiogroup" aria-label="Cara terima">
             <p className="mb-1.5 font-bold">Cara terima</p>
             <div className="grid gap-2 sm:grid-cols-2">
@@ -188,7 +177,27 @@ export default function FormPesan() {
               ))}
             </div>
           </div>
-          <div role="radiogroup" aria-label="Kapan dikirim">
+          {ambil && (
+            <p className="data text-tinta-2">
+              Diambil di gudang, {jam.hari}, pukul {jam.ambil} WIB. Minimal 1 tray.
+            </p>
+          )}
+          {!ambil && (
+            <div role="radiogroup" aria-label="Tujuan">
+              <p className="mb-1.5 font-bold">Tujuan</p>
+              <div className="grid gap-2 sm:grid-cols-3">
+                {tujuan.map((t) => (
+                  <Pilihan key={t.id} nama="tujuan" nilai={t.id} dipilih={tujuanId === t.id} ubah={setTujuanId}>
+                    {t.nama}
+                  </Pilihan>
+                ))}
+              </div>
+              <p className="data mt-2 text-tinta-2">
+                Kirim ke sini: {tuju.hari}. Minimal {tuju.minimum} tray.
+              </p>
+            </div>
+          )}
+          <div role="radiogroup" aria-label="Kapan">
             <p className="mb-1.5 font-bold">Kapan</p>
             <div className="grid gap-2">
               {KIRIM.map((k) => (

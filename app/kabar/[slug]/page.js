@@ -7,7 +7,7 @@ import TombolWA from '@/components/TombolWA';
 import { tulisan, cariTulisan } from '@/lib/kabar';
 import { tanggalPanjang } from '@/lib/format';
 import { ogHalaman, jsonLdRemah, jsonLdTulisan } from '@/lib/seo';
-import { PESAN } from '@/lib/data';
+import { PESAN, jam } from '@/lib/data';
 
 export function generateStaticParams() {
   return tulisan.map((t) => ({ slug: t.slug }));
@@ -54,28 +54,28 @@ function Blok({ b }) {
         <figure className="lubang !my-8 !p-4 text-tinta sm:!p-6">
           <p className="cap-label text-[0.875rem]">{b.label}</p>
           <figcaption className="mt-4 font-display text-[1.7rem] leading-none">{b.judul}</figcaption>
-          {b.kolom.length > 3 && <p className="data mt-2 text-tinta-3 sm:hidden">Geser tabel ke samping untuk melihat semua kolom.</p>}
           <div className="mt-3 overflow-x-auto" tabIndex={0} role="region" aria-label={`Tabel: ${b.judul}`}>
-            <table className="tabel-nota">
-              <thead>
-                <tr>
+            {/* Peran tabel ditulis eksplisit karena di layar sempit baris tabel ditumpuk lewat CSS (display: block). */}
+            <table className="tabel-nota" role="table">
+              <thead role="rowgroup">
+                <tr role="row">
                   {b.kolom.map((k, i) => (
-                    <th key={i} scope="col" className={i > 0 ? 'angka-kolom' : undefined}>
+                    <th key={i} role="columnheader" scope="col" className={i > 0 ? 'angka-kolom' : undefined}>
                       {k || <span className="sr-only">Nama</span>}
                     </th>
                   ))}
                 </tr>
               </thead>
-              <tbody>
+              <tbody role="rowgroup">
                 {b.baris.map((r) => (
-                  <tr key={r[0]}>
+                  <tr key={r[0]} role="row">
                     {r.map((c, i) =>
                       i === 0 ? (
-                        <th key={i} scope="row">
+                        <th key={i} role="rowheader" scope="row">
                           {c}
                         </th>
                       ) : (
-                        <td key={i} className="angka-kolom">
+                        <td key={i} role="cell" data-label={b.kolom[i]} className="angka-kolom">
                           {c}
                         </td>
                       ),
@@ -117,7 +117,7 @@ export default async function Tulisan({ params }) {
         <aside aria-label="Tulisan lain dan pesan" className="space-y-4 lg:col-span-4 lg:self-start lg:sticky lg:top-24">
           <div className="lubang lubang-gelap gelap">
             <p className="font-display text-[1.9rem] leading-[1.02]">Mau pesan telur untuk besok?</p>
-            <p className="mt-2 text-cangkang/90">Kirim pesananmu lewat WhatsApp sebelum jam 15.00.</p>
+            <p className="mt-2 text-cangkang/90">Kirim pesananmu lewat WhatsApp sebelum jam {jam.batasPesan}.</p>
             <div className="mt-5">
               <TombolWA pesan={PESAN.pesan} className="tombol tombol-kuning" />
             </div>
